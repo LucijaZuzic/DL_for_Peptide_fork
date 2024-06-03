@@ -110,8 +110,12 @@ def main():
                     optimizer.step()
 
             if args.task_type == 'Classification':
+                if not os.path.isdir('models/no_val/'):
+                    os.makedirs('models/no_val/')
                 torch.save(model.state_dict(),'models/no_val/seed_{}/test_{}/cla_seed_{}_test_{}_reg_{}_lr_{}_bs_{}.pt'.format(some_seed, test_number, some_seed, test_number, args.model,args.lr,args.batch_size))
             elif args.task_type == 'Regression':
+                if not os.path.isdir('models/no_val/'):
+                    os.makedirs('models/no_val/')
                 torch.save(model.state_dict(),'models/no_val/seed_{}/test_{}/reg_seed_{}_test_{}_reg_{}_lr_{}_bs_{}.pt'.format(some_seed, test_number, some_seed, test_number, args.model,args.lr,args.batch_size))
             
             predict = []

@@ -143,7 +143,7 @@ def main():
         df_test_save['feature'] = df_test_seq['Feature']
         df_test_save['predict'] = predict
         df_test_save['label'] = labels
-        test_acc = accuracy(model_load(test_enc_inputs),test_label).item()
+        test_acc = accuracy(outputs,test_label).item()
         df_test_save['Acc'] = test_acc
 
         from sklearn.metrics import precision_score, recall_score, f1_score

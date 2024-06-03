@@ -86,6 +86,75 @@ df_long_test_AP_save['Feature'] = seq_NEW
 df_long_test_AP_save['Label'] = actual_AP_NEW
 df_long_test_AP_save.to_csv('Sequential_Peptides/mine/all_actual_AP.csv')
         
+df = pd.read_csv(
+    "Sequential_Peptides/collection_of_peptide_data.csv"
+)
+
+dict_hex = {}
+actual_AP = []
+duplicate_list = []
+duplicate_AP_list = []
+threshold = 1.75
+for ix in range(len(df["Feature"])):
+    if df["Feature"][ix] not in dict_hex:
+        dict_hex[df["Feature"][ix]] = "1"
+        actual_AP.append(df["Label"][ix])
+    else:
+        duplicate_list.append(df["Feature"][ix])
+        duplicate_AP_list.append(df["Label"][ix])
+for val in duplicate_list:
+    ix = list(dict_hex.keys()).index(val)
+    ix_dup = duplicate_list.index(list(dict_hex.keys())[ix])
+    error_status = (actual_AP[ix] < threshold) != (duplicate_AP_list[ix_dup] < threshold)
+    print(error_status, list(dict_hex.keys())[ix], actual_AP[ix], duplicate_AP_list[ix_dup])
+    actual_AP[ix] = np.average([actual_AP[ix], duplicate_AP_list[ix_dup]])
+
+test_labels = []
+for i in actual_AP:
+    if i < threshold:
+        test_labels.append(0.0)
+    else:
+        test_labels.append(1.0)
+
+seq_NEW = []
+test_labels_NEW = []
+actual_AP_NEW = []
+for ix in range(len(actual_AP)):
+    seq_NEW.append(list(dict_hex.keys())[ix])
+    test_labels_NEW.append(test_labels[ix])
+    actual_AP_NEW.append(actual_AP[ix])
+
+df_long_test_save = pd.DataFrame()
+df_long_test_save['Feature'] = seq_NEW
+df_long_test_save['Label'] = test_labels_NEW
+df_long_test_save.to_csv('Sequential_Peptides/mine/all_test_labels_long.csv')
+        
+df_long_test_AP_save = pd.DataFrame()
+df_long_test_AP_save['Feature'] = seq_NEW
+df_long_test_AP_save['Label'] = actual_AP_NEW
+df_long_test_AP_save.to_csv('Sequential_Peptides/mine/all_actual_AP_long.csv')
+
+ix_start = 0
+for start_ix in range(0, len(actual_AP), 6000):
+    ix_start += 1
+    seq_NEW = []
+    test_labels_NEW = []
+    actual_AP_NEW = []
+    for ix in range(start_ix, min(start_ix + 6000, len(actual_AP))):
+        seq_NEW.append(list(dict_hex.keys())[ix])
+        test_labels_NEW.append(test_labels[ix])
+        actual_AP_NEW.append(actual_AP[ix])
+
+    df_long_test_save = pd.DataFrame()
+    df_long_test_save['Feature'] = seq_NEW
+    df_long_test_save['Label'] = test_labels_NEW
+    df_long_test_save.to_csv('Sequential_Peptides/mine/all_test_labels_long' + str(ix_start) + '.csv')
+            
+    df_long_test_AP_save = pd.DataFrame()
+    df_long_test_AP_save['Feature'] = seq_NEW
+    df_long_test_AP_save['Label'] = actual_AP_NEW
+    df_long_test_AP_save.to_csv('Sequential_Peptides/mine/all_actual_AP_long' + str(ix_start) + '.csv')
+
 for some_seed in seed_list:
          
         SA_data = np.load("Sequential_Peptides/mine/data_SA_updated.npy", allow_pickle=True).item()

@@ -76,7 +76,7 @@ seed_list = [305475974, 369953070, 879273778, 965681145, 992391276]
 def return_lens():
     lens = dict()
     for test_num in range(1, 6):
-        seqs, predict, labs, one_file = return_seq_predictions_labels(seed_list[0], test_num, 1, model_list[0])
+        seqs, predict, labs, one_file = return_seq_predictions_labels(seed_list[0], test_num, model_list[0])
         for seq_ix in range(len(seqs)):
             if len(seqs[seq_ix]) not in lens:
                 lens[len(seqs[seq_ix])] = 0
@@ -85,7 +85,7 @@ def return_lens():
         
 def count_classes_seed_test(seed_val, test_num, minlen, maxlen):
     classes = dict() 
-    seqs, predict, labs, one_file = return_seq_predictions_labels(seed_val, test_num, 1, model_list[0])
+    seqs, predict, labs, one_file = return_seq_predictions_labels(seed_val, test_num, model_list[0])
     for seq_ix in range(len(seqs)):
         if len(seqs[seq_ix]) > maxlen or len(seqs[seq_ix]) < minlen:
             continue
@@ -97,7 +97,7 @@ def count_classes_seed_test(seed_val, test_num, minlen, maxlen):
 def count_classes(minlen, maxlen):
     classes = dict()
     for test_num in range(1, 6):
-        seqs, predict, labs, one_file = return_seq_predictions_labels(seed_list[0], test_num, 1, model_list[0])
+        seqs, predict, labs, one_file = return_seq_predictions_labels(seed_list[0], test_num, model_list[0])
         for seq_ix in range(len(seqs)):
             if len(seqs[seq_ix]) > maxlen or len(seqs[seq_ix]) < minlen:
                 continue
@@ -137,7 +137,7 @@ def print_dict(dicti, mini, maxi):
     dict_csv_data = dict()
     for c in colnames:
         dict_csv_data[c] = []
-    for metric in dicti[model_list[0]][seed_list[0]][1][1]:
+    for metric in dicti[model_list[0]][seed_list[0]][1]:
         dict_csv_data["Metric"].append(metric.replace(" = ", ""))
         for model_name in model_list:
             for seed_val in seed_list:
@@ -152,17 +152,15 @@ def print_dict_model(dicti, model_name, mini, maxi):
     colnames = ["Metric"]
     for seed_val in seed_list:
         for test_num in range(1, 6):
-            for fold_num in range(1, 6):
-                colnames.append('{} (seed {}, test {})'.format(model_name, seed_val, test_num))
+            colnames.append('{} (seed {}, test {})'.format(model_name, seed_val, test_num))
     dict_csv_data = dict()
     for c in colnames:
         dict_csv_data[c] = []
-    for metric in dicti[model_list[0]][seed_list[0]][1][1]:
+    for metric in dicti[model_list[0]][seed_list[0]][1]:
         dict_csv_data["Metric"].append(metric.replace(" = ", ""))
         for seed_val in seed_list:
             for test_num in range(1, 6):
-                for fold_num in range(1, 6):
-                    dict_csv_data['{} (seed {}, test {})'.format(model_name, seed_val, test_num)].append(dicti[model_name][seed_val][test_num][metric])
+                dict_csv_data['{} (seed {}, test {})'.format(model_name, seed_val, test_num)].append(dicti[model_name][seed_val][test_num][metric])
     if not os.path.isdir('results_processed_seq_no_val/' + str(mini) + "_" + str(maxi) + "/" + model_name):
         os.makedirs('results_processed_seq_no_val/' + str(mini) + "_" + str(maxi) + "/" + model_name)
     df_new = pd.DataFrame(dict_csv_data)
@@ -175,7 +173,7 @@ def print_dict_model_seed(dicti, model_name, seed_val, mini, maxi):
     dict_csv_data = dict()
     for c in colnames:
         dict_csv_data[c] = []
-    for metric in dicti[model_list[0]][seed_list[0]][1][1]:
+    for metric in dicti[model_list[0]][seed_list[0]][1]:
         dict_csv_data["Metric"].append(metric.replace(" = ", ""))
         for test_num in range(1, 6):
             dict_csv_data['{} (seed {}, test {})'.format(model_name, seed_val, test_num)].append(dicti[model_name][seed_val][test_num][metric])

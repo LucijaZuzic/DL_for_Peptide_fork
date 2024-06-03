@@ -24,7 +24,7 @@ parser.add_argument('--src_vocab_size', type=int, default=21) # number of amino 
 parser.add_argument('--src_len', type=int, default=24)
 # parser.add_argument('--embed_dim', type=int, default=256)
 parser.add_argument('--batch_size', type=int, default=1024)
-parser.add_argument('--model', type=str, default='Bi-LSTM',choices=['RNN','LSTM','Bi-LSTM','Transformer'])
+parser.add_argument('--model', type=str, default='Transformer',choices=['RNN','LSTM','Bi-LSTM','Transformer'])
 
 args = parser.parse_args()
 
@@ -52,13 +52,13 @@ def main():
         for test_number in range(1, 6):
 
             if args.task_type == 'Classification':
-                df_train = pd.read_csv('Sequential_Peptides/mine/no_val/seed_{}/test_{}/train_val_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
-                df_test = pd.read_csv('Sequential_Peptides/mine/no_val/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
+                df_train = pd.read_csv('Sequential_Peptides/mine/seed_{}/test_{}/train_val_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
+                df_test = pd.read_csv('Sequential_Peptides/mine/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
                 train_label = torch.Tensor(np.array(df_train["Label"])).long()
                 test_label = torch.Tensor(np.array(df_test["Label"])).long().to(device)
             elif args.task_type == 'Regression':
-                df_train = pd.read_csv('Sequential_Peptides/mine/no_val/seed_{}/test_{}/train_val_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
-                df_test = pd.read_csv('Sequential_Peptides/mine/no_val/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
+                df_train = pd.read_csv('Sequential_Peptides/mine/seed_{}/test_{}/train_val_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
+                df_test = pd.read_csv('Sequential_Peptides/mine/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
                 train_label = torch.Tensor(np.array(df_train["Label"])).unsqueeze(1).float()
                 test_label = torch.Tensor(np.array(df_test["Label"])).unsqueeze(1).float().to(device)
             
@@ -110,12 +110,12 @@ def main():
                     optimizer.step()
 
             if args.task_type == 'Classification':
-                if not os.path.isdir('models/no_val/'):
-                    os.makedirs('models/no_val/')
+                if not os.path.isdir('models/no_val/seed_{}/test_{}'.format(some_seed, test_number)):
+                    os.makedirs('models/no_val/seed_{}/test_{}'.format(some_seed, test_number))
                 torch.save(model.state_dict(),'models/no_val/seed_{}/test_{}/cla_seed_{}_test_{}_reg_{}_lr_{}_bs_{}.pt'.format(some_seed, test_number, some_seed, test_number, args.model,args.lr,args.batch_size))
             elif args.task_type == 'Regression':
-                if not os.path.isdir('models/no_val/'):
-                    os.makedirs('models/no_val/')
+                if not os.path.isdir('models/no_val/seed_{}/test_{}'.format(some_seed, test_number)):
+                    os.makedirs('models/no_val/seed_{}/test_{}'.format(some_seed, test_number))
                 torch.save(model.state_dict(),'models/no_val/seed_{}/test_{}/reg_seed_{}_test_{}_reg_{}_lr_{}_bs_{}.pt'.format(some_seed, test_number, some_seed, test_number, args.model,args.lr,args.batch_size))
             
             predict = []
@@ -144,7 +144,7 @@ def main():
 
                 df_test_save = pd.DataFrame()
                 labels = test_label.tolist()
-                df_test_seq = pd.read_csv('Sequential_Peptides/mine/no_val/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
+                df_test_seq = pd.read_csv('Sequential_Peptides/mine/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
                 df_test_save['feature'] = df_test_seq['Feature']
                 df_test_save['predict'] = predict
                 df_test_save['label'] = labels
@@ -167,7 +167,7 @@ def main():
 
                 df_test_save = pd.DataFrame()
                 labels = test_label.squeeze(1).tolist()
-                df_test_seq = pd.read_csv('Sequential_Peptides/mine/no_val/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
+                df_test_seq = pd.read_csv('Sequential_Peptides/mine/seed_{}/test_{}/test_seqs_seed_{}_test_{}.csv'.format(some_seed, test_number, some_seed, test_number))
                 df_test_save['feature'] = df_test_seq['Feature']
                 df_test_save['predict'] = predict
                 df_test_save['label'] = labels

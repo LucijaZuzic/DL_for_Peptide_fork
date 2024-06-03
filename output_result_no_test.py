@@ -116,10 +116,10 @@ def print_dict(dicti, mini, maxi):
     dict_csv_data = dict()
     for c in colnames:
         dict_csv_data[c] = []
-    for metric in dicti[model_list[0]][1][1]:
+    for metric in dicti[model_list[0]]:
         dict_csv_data["Metric"].append(metric.replace(" = ", ""))
         for model_name in model_list:
-            dict_csv_data['{} (seed {}, test {})'.format(model_name)].append(dicti[model_name][metric])
+            dict_csv_data['{}'.format(model_name)].append(dicti[model_name][metric])
     if not os.path.isdir('results_processed_seq_no_test/' + str(mini) + "_" + str(maxi)):
         os.makedirs('results_processed_seq_no_test/' + str(mini) + "_" + str(maxi))
     df_new = pd.DataFrame(dict_csv_data)

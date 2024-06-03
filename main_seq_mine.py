@@ -21,10 +21,10 @@ parser.add_argument('--lr', type=float, default=0.2,
 # parser.add_argument('--hidden', type=int, default=256,
                     # help='Number of hidden units.')
 parser.add_argument('--src_vocab_size', type=int, default=21) # number of amino acids + 'Empty'
-parser.add_argument('--src_len', type=int, default=10)
+parser.add_argument('--src_len', type=int, default=24)
 # parser.add_argument('--embed_dim', type=int, default=256)
 parser.add_argument('--batch_size', type=int, default=1024)
-parser.add_argument('--model', type=str, default='Transformer',choices=['RNN','LSTM','Bi-LSTM','Transformer'])
+parser.add_argument('--model', type=str, default='Bi-LSTM',choices=['RNN','LSTM','Bi-LSTM','Transformer'])
 
 args = parser.parse_args()
 

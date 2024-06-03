@@ -12,7 +12,6 @@ if not os.path.isdir('xlsx_version/'):
 for model_name in model_list:
     workbook_model = Workbook('xlsx_version/joined_all_' + model_name + '.xlsx')
     for seed_val in seed_list:
-        workbook_model_seed = Workbook('xlsx_version/joined_all_' + model_name + "_seed_" + str(seed_val) + '.xlsx')
         path_csv = 'results_processed_seq/' + str(mini) + "_" + str(maxi) + "/" + model_name + "/seed_" + str(seed_val) + "/" + str(mini) + "_" + str(maxi) + "_" + model_name + "_seed_" + str(seed_val) + ".csv"
         worksheet = workbook.add_worksheet(model_name + " " + str(seed_val))
         worksheet_model = workbook_model.add_worksheet(model_name + " " + str(seed_val))

@@ -234,7 +234,7 @@ class Transformer(nn.Module):
 
 class LSTM(nn.Module):
     """
-        Parametersï¼?
+        Parameters:
         - input_size: feature size
         - hidden_size: number of hidden units
         - output_size: number of output
@@ -265,7 +265,7 @@ class LSTM(nn.Module):
 
 class BidirectionalLSTM(nn.Module):
     """
-        Parametersï¼?
+        Parameters:
         - input_size: feature size
         - hidden_size: number of hidden units
         - output_size: number of output

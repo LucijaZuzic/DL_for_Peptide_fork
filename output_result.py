@@ -128,6 +128,10 @@ def filter_dict(minlen, maxlen):
                         labs_filter.append(labs[seq_ix])
                     read_data(labs_filter, predict_filter, lines_dict)
                     models_line_dicts[model_name][seed_val][test_num][fold_num] = lines_dict
+                    if not os.path.isdir('results_processed_seq/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/seed_" + str(seed_val) + "/test_" + str(test_num) + "/"):
+                        os.makedirs('results_processed_seq/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/seed_" + str(seed_val) + "/test_" + str(test_num) + "/")
+                    df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter})
+                    df_new.to_csv('results_processed_seq/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/seed_" + str(seed_val) + "/test_" + str(test_num) + "/" + str(minlen) + "_" + str(maxlen) + "_" + model_name + "_seed_" + str(seed_val) + "_test_" + str(test_num) + "_fold_" + str(fold_num) + "_preds.csv")
     return models_line_dicts
  
 def print_dict(dicti, mini, maxi):

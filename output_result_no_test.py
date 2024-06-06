@@ -107,6 +107,10 @@ def filter_dict(minlen, maxlen):
             labs_filter.append(labs[seq_ix])
         read_data(labs_filter, predict_filter, lines_dict)
         models_line_dicts[model_name] = lines_dict
+        if not os.path.isdir('results_processed_seq_no_test/' + str(minlen) + "_" + str(maxlen) + "/" + model_name):
+            os.makedirs('results_processed_seq_no_test/' + str(minlen) + "_" + str(maxlen) + "/" + model_name)
+        df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter})
+        df_new.to_csv('results_processed_seq_no_test/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/" + str(minlen) + "_" + str(maxlen) + "_" + model_name + "_preds.csv")
     return models_line_dicts
  
 def print_dict(dicti, mini, maxi):

@@ -1,13 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-model_list_old = ['Transformer', 'RNN', 'LSTM', 'Bi-LSTM', 'MLP']
-model_list_new = ["AP", "SP", "AP-SP", "t-SNE SP", "t-SNE AP-SP"]
+model_list = ['Transformer', 'RNN', 'LSTM', 'Bi-LSTM', 'MLP']
 seed_list = [305475974, 369953070, 879273778, 965681145, 992391276]
 light_color = {"TN": "#FFF2CC", "FP": "#F8CECC", "FN": "#DAE8FC", "TP": "#D5E8D4"}
 dark_color = {"TN": "#D6B656", "FP": "#B85450", "FN": "#6C8EBF", "TP": "#82B366"}
 
-def merge_format_long(model_list, dirname, mini, maxi):
+def merge_format_long(dirname, mini, maxi):
     ix_model = 0
     tp_list = [0 for model in model_list]
     fn_list = [0 for model in model_list]
@@ -65,7 +64,7 @@ def merge_format_long(model_list, dirname, mini, maxi):
     plt.savefig(dirname + "/" + str(mini) + "_" + str(maxi) + "/" + str(mini) + "_" + str(maxi) + "_all_models.png", bbox_inches = "tight")
     plt.close()
 
-def merge_format_long_seed(model_list, dirname, mini, maxi):
+def merge_format_long_seed(dirname, mini, maxi):
     ix_model = 0
     tick_ix = 0
     xtick_labels_text = []
@@ -134,7 +133,7 @@ def merge_format_long_seed(model_list, dirname, mini, maxi):
     plt.savefig(dirname + "/" + str(mini) + "_" + str(maxi) + "/" + str(mini) + "_" + str(maxi) + "_all_models_seeds.png", bbox_inches = "tight")
     plt.close()
 
-def merge_format(model_list, dirname, mini, maxi):
+def merge_format(dirname, mini, maxi):
     ix_model = 0
     tp_list = [0 for model in model_list]
     fn_list = [0 for model in model_list]
@@ -191,9 +190,9 @@ def merge_format(model_list, dirname, mini, maxi):
     plt.savefig(dirname + "/" + str(mini) + "_" + str(maxi) + "/" + str(mini) + "_" + str(maxi) + "_all_models.png", bbox_inches = "tight")
     plt.close()
 
-merge_format_long(model_list_old, "results_processed_merged_seq_no_val", 3, 24)
-merge_format_long_seed(model_list_old, "results_processed_merged_seq_no_val", 3, 24)
-merge_format_long(model_list_old, "results_processed_20_seq_no_val", 5, 5)
-merge_format_long_seed(model_list_old, "results_processed_20_seq_no_val", 5, 5)
-merge_format(model_list_old, "results_processed_seq_no_test", 5, 5)
-merge_format(model_list_old, "results_processed_seq_long", 5, 10)
+merge_format_long("results_processed_merged_seq_no_val", 3, 24)
+merge_format_long_seed("results_processed_merged_seq_no_val", 3, 24)
+merge_format_long("results_processed_20_seq_no_val", 5, 5)
+merge_format_long_seed("results_processed_20_seq_no_val", 5, 5)
+merge_format("results_processed_seq_no_test", 5, 5)
+merge_format("results_processed_seq_long", 5, 10)

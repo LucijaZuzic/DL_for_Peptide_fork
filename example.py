@@ -14,7 +14,7 @@ results = {
 }
 
 
-def survey(results, category_names):
+def survey(results):
     """
     Parameters
     ----------
@@ -28,31 +28,34 @@ def survey(results, category_names):
     labels = list(results.keys())
     data = np.array(list(results.values()))
     data_cum = data.cumsum(axis=1)
-    category_colors = plt.get_cmap('RdYlGn')(
-        np.linspace(0.15, 0.85, data.shape[1]))
+    category_names = ["TN", "FP", "FN", "TP"]
+    light_color = ["#FFF2CC", "#F8CECC", "#DAE8FC", "#D5E8D4"]
+    dark_color = ["#D6B656", "#B85450", "#6C8EBF", "#82B366"]
 
-    fig, ax = plt.subplots(figsize=(9.2, 5))
+    fig, ax = plt.subplots(figsize=(9.2, len(results)))
     ax.invert_yaxis()
     ax.xaxis.set_visible(False)
     ax.set_xlim(0, np.sum(data, axis=1).max())
-
-    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
+    if len(results) == 5:
+        ax.set_ylabel("Model")
+    else:
+        ax.set_ylabel("Model and seed")
+    for i, (colname, color_l, color_d) in enumerate(zip(category_names, light_color, dark_color)):
         widths = data[:, i]
         starts = data_cum[:, i] - widths
         ax.barh(labels, widths, left=starts, height=0.5,
-                label=colname, color=color)
+                label=colname, color=color_l, edgecolor=color_d)
         xcenters = starts + widths / 2
 
-        r, g, b, _ = color
-        text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
         for y, (x, c) in enumerate(zip(xcenters, widths)):
-            ax.text(x, y, str(int(c)), ha='center', va='center',
-                    color=text_color)
+            if int(c) > 0:
+                ax.text(x, y, str(int(c)), ha='center', va='center',
+                        color='black')
     ax.legend(ncol=len(category_names), bbox_to_anchor=(0, 1),
               loc='lower left', fontsize='small')
 
     return fig, ax
 
 
-survey(results, category_names)
-plt.show()
+#survey(results, category_names)
+#plt.show()

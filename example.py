@@ -32,7 +32,7 @@ def survey(results):
     light_color = ["#FFF2CC", "#F8CECC", "#DAE8FC", "#D5E8D4"]
     dark_color = ["#D6B656", "#B85450", "#6C8EBF", "#82B366"]
 
-    fig, ax = plt.subplots(figsize=(9.2, len(results)))
+    fig, ax = plt.subplots(figsize=(10, len(results) / 2))
     ax.invert_yaxis()
     ax.xaxis.set_visible(False)
     ax.set_xlim(0, np.sum(data, axis=1).max())

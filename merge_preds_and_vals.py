@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 model_list_old = ['Transformer', 'RNN', 'LSTM', 'Bi-LSTM', 'MLP']
 model_list_new = ["AP", "SP", "AP-SP", "t-SNE SP", "t-SNE AP-SP"]

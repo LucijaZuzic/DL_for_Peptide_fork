@@ -32,8 +32,8 @@ merge_format("results_processed_seq_genetic_low_0", 6, 6)
 merge_format("results_processed_seq_genetic_low_1", 10, 10)
 
 merge_format("results_processed_seq_genetic_strong", 6, 10)
-merge_format("results_processed_seq_genetic_strong_0", 6, 10)
-merge_format("results_processed_seq_genetic_strong_1", 8, 10)
+merge_format("results_processed_seq_genetic_strong_0", 6, 6)
+merge_format("results_processed_seq_genetic_strong_1", 7, 10)
 
 merge_format("results_processed_seq_genetic_experiments_all", 9, 10)
 merge_format("results_processed_seq_genetic_experimentsA", 9, 10)

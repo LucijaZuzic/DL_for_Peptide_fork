@@ -1,0 +1,41 @@
+\begin{table}[ht]
+    \begin{center}
+        \caption{Dodati opis...}
+        \resizebox{\linewidth}{!}{
+            \begin{tabular}{l c l c l c} 
+                \hline
+                \multicolumn{2}{c}{\textbf{Experiment A}} & \multicolumn{2}{c}{\textbf{Experiment B}} & \multicolumn{2}{c}{\textbf{Experiment C}} \\
+                \hline
+                \textbf{Peptides} & \textbf{\makecell{SA\\probability}} & \textbf{Peptides} & \textbf{\makecell{SA\\probability}} & \textbf{Peptides} & \textbf{\makecell{SA\\probability}} \\
+                \hline
+                    \texttt{CCLNCNNYT} & 99.8\% & \texttt{FWGFDGDYT} & 99.8\% & \texttt{CCCLDIQVDQ} & 99.9\% \\
+                    \texttt{CCLNLNNYD} & 99.8\% & \texttt{FYFFEHCLFH} & 99.6\% & \texttt{CCCLDLTMA} & 99.8\% \\
+                    \texttt{CCLNLNNYT} & 99.7\% & \texttt{FYFFEHCLFN} & 99.7\% & \texttt{CCCLDLTMRA} & 99.8\% \\
+                    \texttt{CHHCSIMGGD} & 99.9\% & \texttt{FYFFEHCLYN} & 99.7\% & \texttt{CCCLDLTMRF} & 99.8\% \\
+                    \texttt{CHHCSIMGGP} & 99.9\% & \texttt{FYGFDGDIN} & 99.8\% & \texttt{CCCLKEEMEQ} & 99.8\% \\
+                    \texttt{CHHCSIMMGH} & 99.9\% & \texttt{FYGFDGDPT} & 99.8\% & \texttt{CCCLYETMRF} & 99.5\% \\
+                    \texttt{CQHCQIMMGH} & 99.9\% & \texttt{FYGFDGDYT} & 99.8\% & \texttt{MDLDIQVDQ} & 99.9\% \\
+                    \texttt{CQHCQMMMVM} & 99.8\% & \texttt{FYGFVAGQYN} & 99.9\% & \texttt{MMMFYEEMEQ} & 99.8\% \\
+                    \texttt{CQHCQMYYVD} & 99.8\% & \texttt{FYGWVVGQWH} & 99.8\% & \texttt{MMMFYETMRF} & 99.6\% \\
+                    \texttt{FHCSIMGGP} & 99.9\% & \texttt{FYYIDGDYN} & 99.8\% & \texttt{MMMYYEEMEQ} & 99.9\% \\
+                    \texttt{FHHCSIMMGH} & 99.9\% & \texttt{FYYIDGDYT} & 99.8\% & \texttt{MYMYYEEMEQ} & 99.7\% \\
+                    \texttt{FVLAEPRFD} & 99.7\% & \texttt{MIYIDGDYT} & 99.8\% & \texttt{MYMYYEEMRF} & 99.6\% \\
+                    \texttt{FVLAEPRFT} & 99.8\% & \texttt{MMFFEHCLFH} & 99.7\% & \texttt{VDDLDLTMRF} & 99.6\% \\
+                    \texttt{FVLAEVMMVM} & 99.7\% & \texttt{MMISVVMMIN} & 99.9\% & \texttt{VDLDIQVDA} & 99.8\% \\
+                    \texttt{MVCSIMGGP} & 99.8\% & \texttt{MWLWEAGQYN} & 99.8\% & \texttt{VDLDIQVDQ} & 99.9\% \\
+                    & & \texttt{MWLWEHCLFH} & 99.7\% & \texttt{VDLDLTMRF} & 99.6\% \\
+                    & & \texttt{MWLWEHCLIN} & 99.8\% & \texttt{WCCAKEEMEQ} & 99.9\% \\
+                    & & \texttt{MWLWVAGQWH} & 99.8\% & \texttt{WCCAKIEMRF} & 99.7\% \\
+                    & & \texttt{MWLWVHCLFH} & 99.6\% & \texttt{WLDLDLQVDQ} & 99.9\% \\
+                    & & \texttt{MWLWVVGQWH} & 99.7\% & \texttt{WLDLDLTMRA} & 99.5\% \\
+                    & & \texttt{MWNVVAGQWN} & 99.9\% & \texttt{WLDLDLTMRF} & 99.8\% \\
+                    & & \texttt{MWNVVVMMWN} & 99.9\% & \texttt{WLDLDLTVDQ} & 99.9\% \\
+                    & & \texttt{MWNWVAGQWH} & 99.7\% & \texttt{WLDLKIQVDQ} & 99.9\% \\
+                    & & \texttt{MYFFEHCLFH} & 99.7\% & & \\
+                    & & \texttt{MYYIDGDYT} & 99.8\% & & \\
+                \hline
+            \end{tabular}
+            \label{tbl:three_exp_peptides}
+        }
+    \end{center}
+\end{table}

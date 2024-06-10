@@ -8,8 +8,8 @@ from sklearn.metrics import (
 
 model_list = ["Bi-LSTM", "LSTM", "MLP", "Transformer", "RNN"]
 
-usable_csv = pd.read_csv("text_experiments_all.csv")
-usable_pep = usable_csv["Feature"]
+usable_csv = pd.read_csv("genetic_peptides.csv")
+usable_pep = list(usable_csv["Feature"])
 
 def return_seq_predictions_labels(use_model):
     features_filter, predictions_filter, labels_filter = [], [], []
@@ -118,10 +118,10 @@ def filter_dict(minlen, maxlen):
             labs_filter.append(labs[seq_ix])
         read_data(labs_filter, predict_filter, lines_dict)
         models_line_dicts[model_name] = lines_dict
-        if not os.path.isdir('results_processed_seq_experiments_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name):
-            os.makedirs('results_processed_seq_experiments_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name)
+        if not os.path.isdir('results_processed_seq_genetic_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name):
+            os.makedirs('results_processed_seq_genetic_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name)
         df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter})
-        df_new.to_csv('results_processed_seq_experiments_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/" + str(minlen) + "_" + str(maxlen) + "_" + model_name + "_preds.csv")
+        df_new.to_csv('results_processed_seq_genetic_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/" + str(minlen) + "_" + str(maxlen) + "_" + model_name + "_preds.csv")
     return models_line_dicts
  
 def print_dict(dicti, mini, maxi):
@@ -135,10 +135,10 @@ def print_dict(dicti, mini, maxi):
         dict_csv_data["Metric"].append(metric.replace(" = ", ""))
         for model_name in model_list:
             dict_csv_data['{}'.format(model_name)].append(dicti[model_name][metric])
-    if not os.path.isdir('results_processed_seq_experiments_all/' + str(mini) + "_" + str(maxi)):
-        os.makedirs('results_processed_seq_experiments_all/' + str(mini) + "_" + str(maxi))
+    if not os.path.isdir('results_processed_seq_genetic_all/' + str(mini) + "_" + str(maxi)):
+        os.makedirs('results_processed_seq_genetic_all/' + str(mini) + "_" + str(maxi))
     df_new = pd.DataFrame(dict_csv_data)
-    df_new.to_csv('results_processed_seq_experiments_all/' + str(mini) + "_" + str(maxi) + "/" + str(mini) + "_" + str(maxi) + ".csv")
+    df_new.to_csv('results_processed_seq_genetic_all/' + str(mini) + "_" + str(maxi) + "/" + str(mini) + "_" + str(maxi) + ".csv")
 
 lens = return_lens()
 for lena in sorted(lens.keys()):

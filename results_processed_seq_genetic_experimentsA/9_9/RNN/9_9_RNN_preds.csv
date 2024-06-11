@@ -1,8 +1,8 @@
-,preds,labels
-0,1,1
-1,1,1
-2,1,1
-3,1,1
-4,1,1
-5,1,1
-6,1,1
+,preds,labels,feature
+0,1,1,CCLNCNNYT
+1,1,1,CCLNLNNYD
+2,1,1,CCLNLNNYT
+3,1,1,FHCSIMGGP
+4,1,1,FVLAEPRFD
+5,1,1,FVLAEPRFT
+6,1,1,MVCSIMGGP

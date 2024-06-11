@@ -128,7 +128,7 @@ def filter_dict(minlen, maxlen):
                 models_line_dicts[model_name][seed_val][test_num] = lines_dict
                 if not os.path.isdir('results_processed_seq_no_val/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/seed_" + str(seed_val)):
                     os.makedirs('results_processed_seq_no_val/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/seed_" + str(seed_val))
-                df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter})
+                df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter, "feature": seqs_filter})
                 df_new.to_csv('results_processed_seq_no_val/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/seed_" + str(seed_val) + "/" + str(minlen) + "_" + str(maxlen) + "_" + model_name + "_seed_" + str(seed_val) + "_test_" + str(test_num) + "_preds.csv")
     return models_line_dicts
  

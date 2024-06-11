@@ -120,7 +120,7 @@ def filter_dict(minlen, maxlen):
         models_line_dicts[model_name] = lines_dict
         if not os.path.isdir('results_processed_seq_genetic_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name):
             os.makedirs('results_processed_seq_genetic_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name)
-        df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter})
+        df_new = pd.DataFrame({"preds": predict_filter, "labels": labs_filter, "feature": seqs_filter})
         df_new.to_csv('results_processed_seq_genetic_all/' + str(minlen) + "_" + str(maxlen) + "/" + model_name + "/" + str(minlen) + "_" + str(maxlen) + "_" + model_name + "_preds.csv")
     return models_line_dicts
  

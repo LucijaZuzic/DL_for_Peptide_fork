@@ -1,8 +1,8 @@
-,preds,labels
-0,0,1
-1,0,1
-2,1,1
-3,1,1
-4,0,0
-5,0,0
-6,0,0
+,preds,labels,feature
+0,0,1,ISDNL
+1,0,1,FTISD
+2,1,1,FAGFT
+3,1,1,FKFEF
+4,0,0,RITTR
+5,0,0,KDHFY
+6,0,0,KDPYY

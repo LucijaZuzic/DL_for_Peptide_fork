@@ -94,3 +94,9 @@ merge_format_long("results_processed_20_seq_no_val", 5, 5)
 merge_format_long_seed("results_processed_20_seq_no_val", 5, 5)
 merge_format("results_processed_seq_no_test", 5, 5)
 merge_format("results_processed_seq_long", 5, 10)
+
+model_list = ['Random Forest']
+merge_format_long("results_processed_random_forest", 3, 24)
+merge_format_long_seed("results_processed_random_forest", 3, 24)
+merge_format_long("results_processed_random_forest_20", 5, 5)
+merge_format_long_seed("results_processed_random_forest_20", 5, 5)

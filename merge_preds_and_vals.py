@@ -43,3 +43,7 @@ merge_format("results_processed_seq_genetic_experiments_all", 9, 10)
 merge_format("results_processed_seq_genetic_experimentsA", 9, 10)
 merge_format("results_processed_seq_genetic_experimentsB", 9, 10)
 merge_format("results_processed_seq_genetic_experimentsC", 9, 10)
+
+model_list = ['Random Forest']
+merge_format_long("results_processed_random_forest", 3, 24)
+merge_format_long("results_processed_random_forest_20", 5, 5)

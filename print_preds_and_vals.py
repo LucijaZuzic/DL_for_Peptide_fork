@@ -80,3 +80,7 @@ def print_latex_format(path_to_file):
 
 print_latex_format("results_processed_merged_seq_no_val/3_24/3_24.csv")
 print_latex_format("results_processed_20_seq_no_val/5_5/5_5.csv")
+
+model_list = ['Random Forest']
+print_latex_format("results_processed_random_forest/3_24/3_24.csv")
+print_latex_format("results_processed_random_forest_20/5_5/5_5.csv")

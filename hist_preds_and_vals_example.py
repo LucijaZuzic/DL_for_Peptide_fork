@@ -56,7 +56,7 @@ def merge_format_long_seed(dirname, mini, maxi):
                     else:
                         fp += 1
             print(tn, fp, fn, tp)
-            results[model + "\n(seed nr. " + str(seed_list.index(seed) + 1) + ")"] = [tn, fp, fn, tp]
+            results[model + "\n(seed " + str(seed) + ")"] = [tn, fp, fn, tp]
     survey(results)
     plt.savefig(dirname + "/" + str(mini) + "_" + str(maxi) + "/" + str(mini) + "_" + str(maxi) + "_all_models_seeds_new.png", bbox_inches = "tight")
     plt.close()
